@@ -14,6 +14,7 @@ public class Main extends JavaPlugin {
 		
 		getCommand("playerhubitems").setExecutor(new Commands());
 		getCommand("phi").setExecutor(new Commands());
+		Bukkit.getPluginManager().registerEvents(new Listeners(), this);
 		
 	}
 	

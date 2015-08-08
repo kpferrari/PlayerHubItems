@@ -1,0 +1,8 @@
+name: PlayerHubItems
+version: 1.0
+author: Bodsterrr
+main: com.Bodsterrr.PlayerHubItems.Main
+
+commands:
+    phi:
+    playerhubitems:
