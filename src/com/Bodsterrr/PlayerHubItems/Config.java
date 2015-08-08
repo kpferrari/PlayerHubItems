@@ -8,6 +8,7 @@ import java.util.Set;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.ItemStack;
 
 public class Config {
 	
@@ -63,6 +64,10 @@ public class Config {
 	
 	public ConfigurationSection getSection(String path) {
 		return filecfg.getConfigurationSection(path);
+	}
+	
+	public ItemStack getItemStack(String path) {
+		return filecfg.getItemStack(path);
 	}
 	
 	public void save() {
