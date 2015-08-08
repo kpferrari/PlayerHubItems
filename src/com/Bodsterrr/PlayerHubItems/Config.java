@@ -27,7 +27,7 @@ public class Config {
 		
 		if (!file.exists()) {
 			try {
-				file.createNewFile();
+				Main.getPlugin().saveResource(fileName, false);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -47,6 +47,10 @@ public class Config {
 	
 	public String getString(String path) {
 		return filecfg.getString(path);
+	}
+	
+	public Integer getInt(String path) {
+		return filecfg.getInt(path);
 	}
 	
 	public List<String> getList(String path) {
