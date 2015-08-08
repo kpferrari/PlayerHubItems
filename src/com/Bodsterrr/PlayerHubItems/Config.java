@@ -12,77 +12,25 @@ import org.bukkit.inventory.ItemStack;
 
 public class Config {
 	
-	private static final Config head = new Config("head");
-	private static final Config book = new Config("book");
+	public static File headFile;
+	public static File bookFile;
+	public static FileConfiguration headCfg;
+	public static FileConfiguration bookCfg;
 	
-	private File file;
-	private static FileConfiguration filecfg;
-	
-	private Config(String fileName) {
+	public static void initCfg() {
 		
-		if (!Main.getPlugin().getDataFolder().exists()) {
-			Main.getPlugin().getDataFolder().mkdir();
+		headFile = new File(Main.getPlugin().getDataFolder(), "head.yml");
+		bookFile = new File(Main.getPlugin().getDataFolder(), "book.yml");
+		
+		if (!headFile.exists()) {
+			Main.getPlugin().saveResource("head.yml", true);
+		}
+		if (!bookFile.exists()) {
+			Main.getPlugin().saveResource("book.yml", true);
 		}
 		
-		file = new File(Main.getPlugin().getDataFolder(), fileName + ".yml");
-		
-		if (!file.exists()) {
-			try {
-				Main.getPlugin().saveResource(fileName, false);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		}
-		
-		filecfg = YamlConfiguration.loadConfiguration(file);
-	}
-	
-	public static Config getHeadCfg() {
-		return head;
-	}
-	
-	public static Config getBookCfg() {
-		return book;
-	}
-	
-	public String getString(String path) {
-		return filecfg.getString(path);
-	}
-	
-	public Integer getInt(String path) {
-		return filecfg.getInt(path);
-	}
-	
-	public List<String> getList(String path) {
-		return filecfg.getStringList(path);
-	}
-	
-	public Set<String> getKeys() {
-		return filecfg.getKeys(false);
-	}
-	
-	public ConfigurationSection getSection(String path) {
-		return filecfg.getConfigurationSection(path);
-	}
-	
-	public ItemStack getItemStack(String path) {
-		return filecfg.getItemStack(path);
-	}
-	
-	public void save() {
-		
-		try {
-			filecfg.save(file);
-		} catch (IOException e) {
-			
-		}
-		
-	}
-	
-	public void load() {
-		
-		filecfg = YamlConfiguration.loadConfiguration(file);
+		headCfg = YamlConfiguration.loadConfiguration(headFile);
+		bookCfg = YamlConfiguration.loadConfiguration(bookFile);
 		
 	}
 
