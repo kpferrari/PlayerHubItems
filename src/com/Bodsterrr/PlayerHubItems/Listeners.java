@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -13,6 +14,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
 
 public class Listeners implements Listener {
 	
@@ -75,9 +77,24 @@ public class Listeners implements Listener {
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		
-		if (event.getClick() != null || event.getClick() != ClickType.UNKNOWN) {
-			if (event.getCurrentItem().getItemMeta().getItemFlags().contains(ItemFlag.HIDE_UNBREAKABLE) && Config.headCfg.getBoolean("No-Click")) {
-				event.setCancelled(true);
+		try {
+			if (event.getClick() != null && event.getClick() != ClickType.UNKNOWN) {
+				if (event.getCurrentItem().getItemMeta().getItemFlags() != null && event.getCurrentItem().getItemMeta().getItemFlags().contains(ItemFlag.HIDE_UNBREAKABLE) && Config.headCfg.getBoolean("No-Click")) {
+					event.setCancelled(true);
+				}
+			}
+		} catch (Exception e) {
+			
+		}
+		
+	}
+	
+	@EventHandler
+	public void onPlayerDeath(PlayerDeathEvent event) {
+	
+		for (ItemStack i : event.getDrops()) {
+			if (i.getItemMeta().getItemFlags() != null && i.getItemMeta().getItemFlags().contains(ItemFlag.HIDE_UNBREAKABLE)) {
+				event.getDrops().remove(i);
 			}
 		}
 		
