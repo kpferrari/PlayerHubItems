@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -38,8 +39,8 @@ public class Head {
 			PlayerHead.addUnsafeEnchantment(AddEnchantment, EnchantmentLevel);
 		}*/
 		
+		PlayerHeadMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 		PlayerHead.setItemMeta(PlayerHeadMeta);
-		
 		p.getInventory().setItem(Slot, PlayerHead);
 		
 	}
