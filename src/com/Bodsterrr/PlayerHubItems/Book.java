@@ -16,6 +16,7 @@ public class Book {
 			BookM.setPage(i, BookM.getPage(i).replaceAll("&", "§").replaceAll("%player%", p.getName()));
 		}
 		BookM.setDisplayName(BookName.replaceAll("&", "§"));
+		
 	}
 
 }

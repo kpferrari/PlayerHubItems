@@ -1,7 +1,14 @@
 Name: "&a%player%'s head"
 Lore:
     - "&6I know your name, &b%player%"
-Enchantments:
-    - "21:10"
 Amount: 2
 Slot: 5
+Console-Command: false
+Command: "me My name is %player%"
+Sound: CHICKEN_EGG_POP
+World-Specific: false
+World-Name: world
+Give-On-Respawn: true
+No-Drop: true
+No-Click: true
+No-Drop-On-Death: true
