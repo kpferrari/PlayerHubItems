@@ -20,7 +20,7 @@ public class Commands implements CommandExecutor {
 			}
 			else {
 				sender.sendMessage("§7# §3This server is using §dPlayerHubItems");
-				sender.sendMessage("§7# §3Using version §d2.5 §3by §6Bodsterr");
+				sender.sendMessage("§7# §3Using version §d2.6 §3by §6Bodsterr");
 			}
 			
 		}
