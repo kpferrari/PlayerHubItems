@@ -1,6 +1,7 @@
 package com.Bodsterrr.PlayerHubItems;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,15 +12,28 @@ public class Book {
 	
 	public static void giveBook(Player p) {
 		
-		String BookName = Config.bookCfg.getString("Book.meta.title");
-		String BookAuthor = Config.bookCfg.getString("Book.meta.author");
+		String BookName = Config.bookCfg.getString("Name").replaceAll("&", "Â§");
+		String BookAuthor = Config.bookCfg.getString("Author").replaceAll("&", "Â§");
 		ItemStack Book = Config.bookCfg.getItemStack("Book");
 		BookMeta BookM = (BookMeta) Book.getItemMeta();
-		for (int i=0;i<=BookM.getPageCount();i++) {
-			BookM.setPage(i, BookM.getPage(i).replaceAll("&", "§").replaceAll("%player%", p.getName()));
+		for (int i = 1; i <= BookM.getPageCount(); i++) {
+			String page = BookM.getPage(i);
+		    page = page.replaceAll("&([a-z0-9])", "Â§$1").replaceAll("%player%", p.getName());
+		    BookM.setPage(i, page);			
 		}
-		BookM.setDisplayName(BookName.replaceAll("&", "§"));
-		BookM.setAuthor(BookAuthor.replaceAll("&", "§"));
+		ArrayList<String> Lore = new ArrayList<String>();
+		for (String s : Config.bookCfg.getStringList("Lore")) {
+			Lore.add(s.replaceAll("&", "Â§").replaceAll("%player%", p.getName()));
+		}
+		BookM.setLore(Lore);
+		Book.setAmount(Config.bookCfg.getInt("Amount"));
+		BookM.setDisplayName(BookName);
+		BookM.setAuthor(BookAuthor);
+		BookM.setTitle(BookName);
+		Book.setItemMeta(BookM);
+		
+		p.getInventory().setItem(Config.bookCfg.getInt("Slot")-1, Book);
+		
 	}
 	
 	public static void saveBook(Player p) {
@@ -32,10 +46,10 @@ public class Book {
 				
 			}
 			
-			p.sendMessage("§7# §3The book in your hand has been saved to §dbook.yml");
+			p.sendMessage("Â§7# Â§3The book in your hand has been saved to Â§dbook.yml");
 		}
 		else {
-			p.sendMessage("§7# §cThat is not a written book");
+			p.sendMessage("Â§7# Â§cThat is not a written book");
 		}
 		
 	}

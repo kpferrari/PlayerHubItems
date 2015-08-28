@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="D:/Games/Minecraft/Servers/VoidMC/Factions/Paper.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jacob/Desktop/Java/BuildTools/PaperSpigot.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

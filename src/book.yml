@@ -1,0 +1,24 @@
+Name: "&aServer Rules"
+Author: "&6Bodsterrr"
+Lore:
+    - "&6I know your name, &b%player%"
+Amount: 1
+Slot: 9
+Sound: CHICKEN_EGG_POP
+World-Specific: false
+World-Name: world
+Give-On-Respawn: true
+No-Drop: true
+No-Click: true
+No-Drop-On-Death: true
+Book:
+  ==: org.bukkit.inventory.ItemStack
+  type: WRITTEN_BOOK
+  meta:
+    ==: ItemMeta
+    meta-type: BOOK_SIGNED
+    title: Title
+    author: Author
+    pages:
+    - "&6We are going on a trip, in &b%player%'s &6favorite rocket ship!"
+    generation: 0
