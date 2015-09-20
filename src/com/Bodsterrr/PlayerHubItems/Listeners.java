@@ -23,7 +23,7 @@ public class Listeners implements Listener {
 		
 		Player player = event.getPlayer();
 		if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-			if (player.getItemInHand().getItemMeta().getItemFlags() != null && player.getItemInHand().getItemMeta().getItemFlags().contains(ItemFlag.HIDE_UNBREAKABLE)) {
+			if (player.getItemInHand().getItemMeta() != null && player.getItemInHand().getItemMeta().getDisplayName().equals(Config.headCfg.getString("Name").replaceAll("%player%", player.getName()).replaceAll("&", "§"))) {
 				if (Config.headCfg.getBoolean("Console-Command") == true) {
 					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), Config.headCfg.getString("Command").replaceAll("%player%", player.getName()));
 				}
@@ -33,7 +33,7 @@ public class Listeners implements Listener {
 				player.playSound(player.getLocation(), Sound.valueOf(Config.headCfg.getString("Sound")), 1, 1);
 			}
 			
-			else if (player.getItemInHand().getItemMeta().getDisplayName().equals(Config.bookCfg.getString("Name").replaceAll("&", "§")
+			else if (player.getItemInHand().getItemMeta().getDisplayName() != null && player.getItemInHand().getItemMeta().getDisplayName().equals(Config.bookCfg.getString("Name").replaceAll("&", "§")
 					.replaceAll("%player%", player.getName()))) {
 				player.playSound(player.getLocation(), Sound.valueOf(Config.bookCfg.getString("Sound")), 1, 1);
 			}

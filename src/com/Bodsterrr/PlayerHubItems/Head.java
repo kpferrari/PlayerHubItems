@@ -39,9 +39,9 @@ public class Head {
 			PlayerHead.addUnsafeEnchantment(AddEnchantment, EnchantmentLevel);
 		}*/
 		
-		PlayerHeadMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
 		PlayerHead.setItemMeta(PlayerHeadMeta);
 		p.getInventory().setItem(Slot, PlayerHead);
+		p.updateInventory();
 		
 	}
 
